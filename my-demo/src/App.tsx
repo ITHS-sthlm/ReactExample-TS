@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Users from './pages/Users';
+import FormPage from './pages/FormPage';
+import { AppBar, Toolbar, Button, Typography } from '@mui/material';
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                        ReactTS Demo
+                    </Typography>
+                    <Button color="inherit" component={Link} to="/">
+                        Hem
+                    </Button>
+                    <Button color="inherit" component={Link} to="/users">
+                        Användare
+                    </Button>
+                    <Button color="inherit" component={Link} to="/form">
+                        Formulär
+                    </Button>
+                </Toolbar>
+            </AppBar>
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/form" element={<FormPage />} />
+            </Routes>
+        </>
+    );
 }
 
-export default App
+export default App;
